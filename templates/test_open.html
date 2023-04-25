@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block head %}<title>{{ title }}</title>{% endblock %}
+
+{% block body %}
+
+    <form class="container" method="post">
+        {{ form.csrf_token() }}
+        <br><br><br>
+        {% if type == "ord" %}
+            <div class="row">
+                <div class="col-3"></div>
+                <div class="col-md-6 text-center">{{ form.text.label }}</div>
+                <div class="col-3"></div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-2"></div>
+                <div class="col-md-4">{{ form.answer.label }}</div>
+                <div class="col-md-4">{{ form.answer(class="form-control") }}</div>
+                <div class="col-2"></div>
+            </div>
+            <div class="row">
+                <div class="col-3"></div>
+                <div class="col-md-6 text-center">{{ form.submit(class="btn btn-primary w-100") }}</div>
+                <div class="col-3"></div>
+            </div>
+        {% elif type == "rad" %}
+            <div class="row">
+                <div class="col-3"></div>
+                <div class="col-md-6 text-center">{{ form.text.label }}</div>
+                <div class="col-3"></div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col">{{ form.radio(class="form-check form-check-inline", choices=_choices) }}</div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-4"></div>
+                <div class="col-md-4">{{ form.submit(class="btn btn-primary w-100") }}</div>
+                <div class="col-4"></div>
+            </div>
+        {% elif type == "check" %}
+            <div class="row">
+                <div class="col-3"></div>
+                <div class="col-md-6 text-center">{{ form.text.label }}</div>
+                <div class="col-3"></div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col">{{ form.checkbox(choices=_choices) }}</div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-4"></div>
+                <div class="col-md-4">{{ form.submit(class="btn btn-primary w-100") }}</div>
+                <div class="col-4"></div>
+            </div>
+        {% endif %}
+    </form>
+
+{% endblock %}

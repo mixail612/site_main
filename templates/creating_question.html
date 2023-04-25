@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block head %}<title>Создание вопроса</title>{% endblock %}
+
+{% block body %}
+
+    <form method="post" class="container">
+
+        {{ form.csrf_token() }}
+
+        {% for form_elem in form.questions %}
+            {{ form_elem.csrf_token() }}
+            <div class="row">
+                <div class="col-4"></div>
+                <div class="col-md-4 text-center"><h4>Вопрос №{{ loop.index }}</h4></div>
+                <div class="col-4"></div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-2"></div>
+                <div class="col-md-4">qwqeqwe</div>
+                <div class="col-md-4">{{ form_elem.text(class="form-control w-100") }}</div>
+                <div class="col-2"></div>
+            </div>
+            <div class="row">
+                {% for elem in form_elem.options %}
+                    <div class="row">
+                        <div class="col-2"></div>
+                        <div class="col-md-4">{{ elem.label }}</div>
+                        <div class="col-md-4">{{ elem(class="form-control") }}</div>
+                        <div class="col-2"></div>
+                    </div>
+                {% endfor %}
+                <div class="row">
+                    <div class="col-2"></div>
+                    <div class="col-md-4">{{ form_elem.true_answer.label }}</div>
+                    <div class="col-md-4">{{ form_elem.true_answer(class="form-control w-100") }}</div>
+                    <div class="col-2"></div>
+                </div>
+            </div>
+            <br><br>
+        {% endfor %}
+        <div class="row">
+            <div class="col-4"></div>
+            <div class="col-md-4">{{ form.submit(class="btn btn-primary w-100") }}</div>
+            <div class="col-4"></div>
+        </div>
+        {% for error in form.errors %}
+            <div class="alert alert-danger" role="alert">
+                {{ error }}
+            </div>
+        {% endfor %}
+    </form>
+
+{% endblock %}

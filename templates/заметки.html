@@ -1,0 +1,125 @@
+checkbox:
+<div class="form-check form-check-inline">
+  <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+  <label class="form-check-label" for="inlineCheckbox1">1</label>
+</div>
+<div class="form-check form-check-inline">
+  <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+  <label class="form-check-label" for="inlineCheckbox2">2</label>
+</div>
+<div class="form-check form-check-inline">
+  <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3" disabled>
+  <label class="form-check-label" for="inlineCheckbox3">3 (disabled)</label>
+</div>
+
+radio:
+<div class="form-check form-check-inline">
+  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+  <label class="form-check-label" for="inlineRadio1">1</label>
+</div>
+<div class="form-check form-check-inline">
+  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+  <label class="form-check-label" for="inlineRadio2">2</label>
+</div>
+<div class="form-check form-check-inline">
+  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3" disabled>
+  <label class="form-check-label" for="inlineRadio3">3 (disabled)</label>
+</div>
+
+
+creating
+
+<div class="row">
+            <div class="col-2"></div>
+            <div class="col-md-4">Название:</div>
+            <div class="col-md-4"><input type="text" class="form-control" placeholder="Введите" name="title" required minlength="1" maxlength="48"></div>
+            <div class="col-2"></div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-2"></div>
+            <div class="col-md-4">Категория:</div>
+            <div class="col-md-4">
+                <select class="form-select" aria-label="Default select example" name="category">
+                    {% for cat in categories %}
+                        <option value="{{ cat['id'] }}">{{ cat["text"] }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-2"></div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-2"></div>
+            <div class="col-md-4">Количество вопросов:</div>
+            <div class="col-md-4"><input type="number" class="form-control" placeholder="Введите" name="num" required></div>
+            <div class="col-2"></div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-2"></div>
+            <div class="col-md-4">Описание:</div>
+            <div class="col-md-4"><input type="text" class="form-control" placeholder="Введите" name="desc"></div>
+            <div class="col-2"></div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-2"></div>
+            <div class="col-md-4">Доступ:</div>
+            <div class="col-md-4">
+                <select class="form-select" aria-label="Default select example" name="type">
+                    <option value="1">Открытый</option>
+                    <option value="2">Закрытый</option>
+                </select>
+            </div>
+            <div class="col-2"></div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-3"></div>
+            <div class="col-md-6"><button type="submit" class="btn-primary btn w-100">Следующий шаг</button></div>
+            <div class="col-3"></div>
+        </div>
+
+
+creating_type
+
+creating_question
+{% extends "base.html" %}
+
+{% block head %}<title>Создание вопроса</title>{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+        <form method="post">
+            {% for elem in nums %}
+                <div class="row">
+                    <h3 class="text-center">Вопрос №{{ int(elem + 1) }}</h3>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-2"></div>
+                    <div class="col-md-4">Условие:</div>
+                    <div class="col-md-4"><input type="text" class="form-control" placeholder="Введите"></div>
+                    <div class="col-2"></div>
+                </div>
+                <div class="row">
+                    <div class="col-2"></div>
+                    <div class="col-md-4">Правильный ответ:</div>
+                    <div class="col-md-4"><input type="text" class="form-control" placeholder="Введите"></div>
+                    <div class="col-2"></div>
+                </div>
+                <br><br>
+            {% endfor %}
+            <div class="row">
+                <div class="col-4"></div>
+                <div class="col-md-4">
+                    <button type="submit" class="btn btn-primary w-100">Создать тест</button>
+                </div>
+                <div class="col-4"></div>
+            </div>
+        </form>
+    </div>
+
+{% endblock %}

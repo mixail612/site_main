@@ -1,0 +1,19 @@
+body {
+    background: rgb(255, 229, 180);
+}
+
+.text {
+    color: rgb(100, 100, 100);
+}
+
+.cell {
+    background: rgb(255, 239, 180);
+}
+
+.warn {
+    color: rgb(255, 30, 10);
+}
+
+* {
+
+}
